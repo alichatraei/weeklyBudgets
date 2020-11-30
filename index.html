@@ -66,7 +66,11 @@
             <nav class="col-md-5 text-center">
               <nav class="pb-3">
                 <ul class="list-group">
-                  <li class="list-group-item">تاکسی</li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    تاکسی<span class="badge badge-pill badge-primary vertical-middle"
+                      >5000 <span>تومان</span></span
+                    >
+                  </li>
                   <li class="list-group-item">سینما</li>
                 </ul>
               </nav>
@@ -76,7 +80,7 @@
                 </p>
               </nav>
               <nav>
-                <p class="alert alert-dark">
+                <p class="alert alert-dark" id="showLastAmount">
                   مبلغ باقی مانده:
                   <span class="lead" id="lastAmount"></span> تومان
                 </p>

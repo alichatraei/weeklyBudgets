@@ -1,24 +1,24 @@
 //Classes
 class CalculateBudget {
   calculateBudget(amount) {
-    let changeAlert = document.querySelector(".alert-dark");
+    let changeAlert = document.querySelector("#showLastAmount");
     lastAmount.textContent -= amount;
-    console.log(amount);
-    console.log(lastAmount.textContent);
     if (firstAmount.textContent / 4 > lastAmount.textContent) {
-      //   changeAlert.removeAttribute("class");
+      changeAlert.removeAttribute("class");
       changeAlert.setAttribute("class", "alert alert-danger");
-    } else if (firstAmount.textContent / 2 > lastAmount.textContent) {
-      //   changeAlert.removeAttribute("class");
+    } else if (firstAmount.textContent / 2 >= lastAmount.textContent) {
+      changeAlert.removeAttribute("class");
       changeAlert.setAttribute("class", "alert alert-warning");
     }
   }
 }
 class HTMLShow {
   showBudget(value) {
-    if (value !== "")
+    if (value !== "") {
       showBudget.setAttribute("style", "display:block !important");
-    else showBudget.removeAttribute("style");
+    } else {
+      showBudget.removeAttribute("style");
+    }
     firstAmount.textContent = value;
     lastAmount.textContent = value;
   }
@@ -38,6 +38,18 @@ class HTMLShow {
       p.remove();
       btnSubmit.disabled = false;
     }, 2000);
+  }
+  showPersianNumbers(value) {
+    let numbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+    return value
+      .toString()
+      .split("")
+      .map((e) => numbers[e])
+      .join("");
+  }
+  insertDuty() {
+    let li = document.createElement("li");
   }
 }
 
