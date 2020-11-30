@@ -1,0 +1,51 @@
+/* Font Faces */
+@font-face {
+  font-family: "iranSans";
+  src: url("../fonts/IRANSans-web.woff");
+}
+@font-face {
+  font-family: "iranSans-Light";
+  src: url("../fonts/IRANSans-Light-web.woff");
+}
+/* set font page */
+* {
+  direction: rtl;
+  font-family: "iranSans";
+}
+/* html */
+html {
+  height: 100%;
+}
+/* body */
+body {
+  /* Linear background */
+  background-image: linear-gradient(
+    to right bottom,
+    #96d2ff,
+    #6fbfff,
+    #49aaff,
+    #2194ff,
+    #007dff,
+    #006df1,
+    #005ee3,
+    #004ed5,
+    #0045b6,
+    #003c97,
+    #003279,
+    #00285c
+  );
+}
+/* main */
+main {
+  margin: 10rem 10rem;
+}
+.card {
+  box-shadow: 0.2rem 0.2rem 0.3rem #00285c;
+  border-radius: 1rem !important;
+}
+#insertValue {
+  border-left: 0.1rem solid #ccc;
+}
+#showBudget {
+  display: none !important;
+}
