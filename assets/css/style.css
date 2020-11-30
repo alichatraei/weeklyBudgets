@@ -49,3 +49,8 @@ main {
 #showBudget {
   display: none !important;
 }
+#showWorks {
+  max-height: 200px;
+  overflow-y: auto;
+  direction: ltr;
+}

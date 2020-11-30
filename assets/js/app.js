@@ -39,7 +39,7 @@ class HTMLShow {
       btnSubmit.disabled = false;
     }, 2000);
   }
-  showPersianNumbers(value) {
+  showPersianNumbers() {
     let numbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
     return value
@@ -48,8 +48,13 @@ class HTMLShow {
       .map((e) => numbers[e])
       .join("");
   }
-  insertDuty() {
-    let li = document.createElement("li");
+  insertDuty(work, amount) {
+    let li = document.createElement("li"),
+      ul = document.querySelector(".list-group");
+    ul.appendChild(li);
+    li.setAttribute("class", "list-group-item d-flex justify-content-between");
+    li.innerHTML = `
+    ${work} <span class="badge badge-pill badge-primary">${amount} تومان</span>`;
   }
 }
 
@@ -76,7 +81,12 @@ function eventListeners() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (nameWork.value == "" || workAmount.value == "") htmlShow.validateData();
-    else calculateBudget.calculateBudget(workAmount.value);
+    else {
+      calculateBudget.calculateBudget(workAmount.value);
+      htmlShow.insertDuty(nameWork.value, workAmount.value);
+      //disabled input budget text when 
+      firstBudget.disabled = true;
+    }
     form.reset();
   });
 }
