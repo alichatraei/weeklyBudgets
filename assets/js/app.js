@@ -10,6 +10,14 @@ class CalculateBudget {
       changeAlert.removeAttribute("class");
       changeAlert.setAttribute("class", "alert alert-warning");
     }
+    //validate if lastAmount will zero nothing happen
+    if (lastAmount.textContent <= 0) {
+      nameWork.disabled = true;
+      workAmount.disabled = true;
+      lastAmount.parentElement.querySelector("#currency").remove();
+      lastAmount.textContent = "پول شما تمام شد";
+      btnSubmit.disabled = true;
+    }
   }
 }
 class HTMLShow {
@@ -56,6 +64,22 @@ class HTMLShow {
     li.innerHTML = `
     ${work} <span class="badge badge-pill badge-primary">${amount} تومان</span>`;
   }
+  getDataFromLS() {
+    let values;
+    if (localStorage.getItem("budgets") === null) values = [];
+    else values = JSON.parse(localStorage.getItem("budgets"));
+    return values;
+  }
+
+  insertDataToLS(work, amount) {
+    let budgetData = {
+        work: work,
+        price: amount,
+      },
+      localStorageArray = this.getDataFromLS();
+    localStorageArray.push(budgetData);
+    localStorage.setItem("budgets", JSON.stringify(localStorageArray));
+  }
 }
 
 //Variables
@@ -84,9 +108,15 @@ function eventListeners() {
     else {
       calculateBudget.calculateBudget(workAmount.value);
       htmlShow.insertDuty(nameWork.value, workAmount.value);
-      //disabled input budget text when 
+      //disabled input budget text when
       firstBudget.disabled = true;
+      //insert value to LocalStorage
+      htmlShow.insertDataToLS(nameWork.value, workAmount.value);
     }
     form.reset();
+  });
+  // Page Loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    htmlShow.getDataFromLS();
   });
 }
