@@ -80,6 +80,11 @@ class HTMLShow {
     localStorageArray.push(budgetData);
     localStorage.setItem("budgets", JSON.stringify(localStorageArray));
   }
+  validateNumbers(status) {
+    let p = document.querySelector("#showNumberError");
+    p.textContent = "لطفا عدد وارد نمایید";
+    p.style.display = status;
+  }
 }
 
 //Variables
@@ -99,7 +104,10 @@ eventListeners();
 function eventListeners() {
   //input changed
   firstBudget.addEventListener("input", (value) => {
-    htmlShow.showBudget(value.target.value);
+    if (!isNaN(value.target.value)) {
+      htmlShow.showBudget(value.target.value);
+      htmlShow.validateNumbers("none");
+    } else htmlShow.validateNumbers("block");
   });
   //submit form
   form.addEventListener("submit", (e) => {
@@ -119,4 +127,5 @@ function eventListeners() {
   document.addEventListener("DOMContentLoaded", () => {
     htmlShow.getDataFromLS();
   });
+  //validate input number
 }
